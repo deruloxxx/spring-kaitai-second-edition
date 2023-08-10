@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Sample Page</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+<h1>Hello World</h1>
+<form action="/hello" method="post">
+  入力: <input type="text" name="text1" />
+  <input type="submit" value="クリック" />
+</form>
+<br/>
+<form action="/hello/db" method="post">
+  従業員ID: <input type="text" name="text2" th:value="${text2_value}" />
+  <input type="submit" value="クリック" />
+</form>
+<br/>
+
+</body>
+</html>
