@@ -19,6 +19,9 @@ public class UserServiceImpl implements UserService {
   public void signup(MUser user) {
     user.setDepartmentId(1);
     user.setRole("ROLE_GENERAL");
+
+    String rawPassword = user.getPassword();
+    user.setPassword(rawPassword);
     mapper.insertOne(user);
   }
   @Override
