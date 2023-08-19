@@ -34,7 +34,6 @@ public class SecurityConfig {
       )
       .authorizeHttpRequests(auth -> auth
         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-        .requestMatchers(PathRequest.toH2Console()).permitAll()
         .requestMatchers("/login").permitAll()
         .requestMatchers("/user/signup").permitAll()
         .requestMatchers("/user/signup/rest").permitAll()
@@ -43,8 +42,7 @@ public class SecurityConfig {
         .anyRequest().authenticated()
       )
       .headers(headers -> headers.disable())
-      .csrf(csrf -> csrf
-        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));;
+      .csrf(csrf -> csrf.disable());;
     return http.build();
   }
 
