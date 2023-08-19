@@ -39,8 +39,12 @@ public class SecurityConfig {
         .requestMatchers("/user/signup").permitAll()
         .requestMatchers("/user/signup/rest").permitAll()
         .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
+        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
         .anyRequest().authenticated()
-      );
+      )
+      .headers(headers -> headers.disable())
+      .csrf(csrf -> csrf
+        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")));;
     return http.build();
   }
 
