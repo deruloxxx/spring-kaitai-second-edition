@@ -57,8 +57,8 @@ public class SecurityConfig {
         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
         .anyRequest().authenticated()
       )
-      .headers(headers -> headers.disable())
-      .csrf(csrf -> csrf.disable());
+      .headers(headers -> headers.disable());
+//      .csrf(csrf -> csrf.disable());
     return http.build();
   }
   @Bean
