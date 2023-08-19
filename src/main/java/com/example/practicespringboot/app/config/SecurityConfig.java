@@ -57,8 +57,10 @@ public class SecurityConfig {
         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
         .anyRequest().authenticated()
       )
-      .headers(headers -> headers.disable());
-//      .csrf(csrf -> csrf.disable());
+      .headers(headers -> headers.disable())
+      .csrf(csrf -> csrf
+        .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**"))
+      );
     return http.build();
   }
   @Bean
@@ -79,7 +81,7 @@ public class SecurityConfig {
 //    UserDetails user = User
 //      .withUsername("user")
 //      .password(encoder.encode("user"))
-//      .roles("GENERAL")
+//      .roles("USER")
 //      .build();
 //    UserDetails admin = User
 //      .withUsername("admin")
