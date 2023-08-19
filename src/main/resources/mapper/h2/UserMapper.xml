@@ -62,6 +62,14 @@
     where
       m_user.user_id = #{userId}
   </select>
+  <select id="findLoginUser" resultType="MUser">
+    select
+      *
+    from
+      m_user
+    where
+      user_id = #{userId}
+  </select>
   <update id="updateOne">
     update m_user set password = #{password}, user_name = #{userName} where user_id = #{userId}
   </update>
