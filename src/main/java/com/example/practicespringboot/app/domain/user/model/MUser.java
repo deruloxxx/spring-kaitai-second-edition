@@ -1,9 +1,6 @@
 package com.example.practicespringboot.app.domain.user.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -22,6 +19,9 @@ public class MUser {
   private Integer gender;
   private Integer departmentId;
   private String role;
+
+  @ManyToOne(optional = true)
+  @JoinColumn(insertable = false, updatable = false, name = "departmentId")
   @Transient
   private Department department;
   @Transient
