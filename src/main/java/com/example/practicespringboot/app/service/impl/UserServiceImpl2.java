@@ -53,7 +53,10 @@ public class UserServiceImpl2 implements UserService {
 
   @Transactional
   @Override
-  public void updateUserOne(String userId, String password, String userName) {}
+  public void updateUserOne(String userId, String password, String userName) {
+    String encryptPassword = encoder.encode(password);
+    repository.updateUser(userId, encryptPassword, userName);
+  }
 
   @Transactional
   @Override
@@ -63,8 +66,6 @@ public class UserServiceImpl2 implements UserService {
 
   @Override
   public MUser getLoginUser(String userId) {
-    Optional<MUser> option = repository.findById(userId);
-    MUser user = option.orElse(null);
-    return user;
+    return repository.findLoginUser(userId);
   }
 }
