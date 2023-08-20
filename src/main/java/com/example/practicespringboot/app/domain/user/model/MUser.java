@@ -22,8 +22,9 @@ public class MUser {
 
   @ManyToOne(optional = true)
   @JoinColumn(insertable = false, updatable = false, name = "departmentId")
-  @Transient
   private Department department;
-  @Transient
+
+  @OneToMany
+  @JoinColumn(insertable = false, updatable = false, name = "userId")
   private List<Salary> salaryList;
 }
