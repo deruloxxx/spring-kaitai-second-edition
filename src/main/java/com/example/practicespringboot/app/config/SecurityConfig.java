@@ -68,7 +68,7 @@ public class SecurityConfig {
     String userQuery =
       "select user_id, password, 'true' as enabled from m_user where user_id = ?";
     String authoritiesQuery =
-      "select user_id, password, 'true' as enabled from m_user where user_id = ?";
+      "select user_id, role, 'true' as enabled from m_user where user_id = ?";
     JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
     users.setUsersByUsernameQuery(userQuery);
     users.setAuthoritiesByUsernameQuery(authoritiesQuery);
