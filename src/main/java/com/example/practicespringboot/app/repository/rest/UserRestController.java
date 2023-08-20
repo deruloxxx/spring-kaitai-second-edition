@@ -5,6 +5,7 @@ import com.example.practicespringboot.app.domain.user.service.UserService;
 import com.example.practicespringboot.app.form.GroupOrder;
 import com.example.practicespringboot.app.form.SignUpForm;
 import com.example.practicespringboot.app.form.UserDetailForm;
+import com.example.practicespringboot.app.form.UserListForm;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -28,6 +30,15 @@ public class UserRestController {
 
   @Autowired
   private MessageSource messageSource;
+
+  @GetMapping("/get/list")
+  public List<MUser> getUserList(UserListForm form) {
+    MUser user = modelMapper.map(form, MUser.class);
+
+    List<MUser> userList = userService.getUsers(user);
+
+    return userList;
+  }
 
   @PostMapping("/signup/rest")
   public RestResult postSignup(@Validated(GroupOrder.class)SignUpForm form, BindingResult bindingResult, Locale locale) {
